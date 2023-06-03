@@ -24,6 +24,12 @@ setnames(DT_CECWHs, old = 1:26,
                "annual_fuel","draw_pattern","UEF","UEF_std","pilot_light",
                "add_date","ref_num","mod_date"))
 
+# change add_date and mod_date to Date objects
+DT_CECWHs[, add_date := lubridate::mdy(add_date)]
+DT_CECWHs[, mod_date := lubridate::mdy(mod_date)]
+
+str(DT_CECWHs)
+
 # save the data file
 save(DT_CECWHs, file = paste0(wd_data,"/DT_CECWHs.Rdata"))
 
